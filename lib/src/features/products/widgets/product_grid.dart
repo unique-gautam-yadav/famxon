@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/product_model.dart';
-import '../views/product_detail.dart';
+import 'buy_column.dart';
 
 class ProductGrid extends StatelessWidget {
   const ProductGrid({
@@ -15,7 +15,8 @@ class ProductGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductDetails.routeName, arguments: item);
+        // Navigator.pushNamed(context, ProductDetails.routeName, arguments: item);
+        buyDialog(context, item);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
@@ -82,4 +83,9 @@ class ProductGrid extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<dynamic> buyDialog(BuildContext context, ProductModel item) {
+  return showModalBottomSheet(
+      context: context, builder: (_) => BuyColumn(model: item));
 }
